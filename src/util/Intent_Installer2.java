@@ -54,6 +54,7 @@ public class Intent_Installer2 {
         ResourcePool_Manager.P_B_Path[] list2 = resource.getP_B_Path();
 
         int t=0,z=0;
+
         // make new Resourceful Object: B_C_Path
         for (int i=0;i<path_list.length;i++){
             if (path_list[i].b_c_list.size()>0){
@@ -64,22 +65,40 @@ public class Intent_Installer2 {
                        // System.out.println("T: "+t+" Host SRC ADDR: "+path_list[i].b_c_list.get(u).subSequence(20,37));
                         list[t].src = path_list[i].b_c_list.get(u).subSequence(20,37).toString();
                         list[t].arr[z] = path_list[i].b_c_list.get(u);
-
+                        //System.out.println("^^^^"+path_list[i].b_c_list.get(u));
                     }
                     else if (path_list[i].b_c_list.get(u).subSequence(57,61).equals("host")){
                         //System.out.println("T: "+t+" Host DST ADDR: "+path_list[i].b_c_list.get(u).subSequence(64,81));
                         list[t].dst =path_list[i].b_c_list.get(u).subSequence(64,81).toString();
                         list[t].arr[z] += path_list[i].b_c_list.get(u);
                         list[t].srcTOdst = list[t].src+" to "+list[t].dst;
+                        //System.out.println("^^^^"+path_list[i].b_c_list.get(u));
                         t++;
                         z=0;
                     }
                     else {
                         list[t].arr[z] += path_list[i].b_c_list.get(u);
+                        //System.out.println("^^^^"+list[t].arr[z]);
                     }
                     u++;
                 }
             }
+        }
+        /*for(int i=0; i<path_list.length; i++){
+            System.out.print(" List 길이 ");
+            System.out.println(i+ " " + path_list[i].b_c_list.size() );
+        }*/
+        for(int i=0; i<path_list.length; i++){
+            if(path_list[i].b_c_list.size()>0){
+                for(int j=0; i<path_list[i].b_c_list.size(); j++){
+                    System.out.print(" **(*@*# ");
+                    System.out.print("i번째 List: "+i+" ");
+                    System.out.print("J 번째 리스트: "+j+" "+ path_list[i].b_c_list.get(j));
+                }
+            }
+            else
+                break;
+            System.out.println(" ");
         }
 
         // make new Resourceful Object: P_B_Path
@@ -121,7 +140,9 @@ public class Intent_Installer2 {
                     if (list[i].srcTOdst.equals(list[j].srcTOdst)){
                         addition +=1;
                         //System.out.println(list[j].srcTOdst+ " have "+ (addition+1)+" paths J: "+j);
+
                         list[j].src=null;
+                        //new object store list[j].src
                         list[j].dst=null;
                         list[j].srcTOdst=null;
                     }
@@ -163,7 +184,7 @@ public class Intent_Installer2 {
         System.out.println("==========================================");
         for (int k=0;k<list2.length;k++){
             if (list2[k].src!=null){
-                System.out.println("Broker to Consumer HOST MAPPING: "+list2[k].srcTOdst+" K= "+k);
+                System.out.println("Broker to Producer HOST MAPPING: "+list2[k].srcTOdst+" K= "+k);
                 for (int r=0;r<list2[k].arr.length;r++){
                     if (list2[k].arr[r]!=null)
                         System.out.println("PATH: "+list2[k].arr[r]+" R: "+r);
@@ -173,6 +194,8 @@ public class Intent_Installer2 {
         install_Intent(list,list2);
 
     }
+    //calcuate traffic for steering
+
 
     //install Intent using Tagging
     private void install_Intent(ResourcePool_Manager.B_C_Path[] list, ResourcePool_Manager.P_B_Path[] list2) throws Exception {

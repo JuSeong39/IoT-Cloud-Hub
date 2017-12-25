@@ -38,6 +38,7 @@ public class Printer {
             System.out.printf("|Port: %10s                 |Port: %10s                 |Port: %10s                 |\n",flist[i].port,flist[i+1].port,flist[i+2].port);
             System.out.printf("|Criteria_type: %9s         |Criteria_type: %9s         |Criteria_type: %9s         |\n",flist[i].ctype,flist[i+1].ctype,flist[i+2].ctype);
             System.out.printf("|Eth_Type: %9s              |Eth_Type: %9s              |Eth_Type: %9s              |\n",flist[i].ethType,flist[i+1].ethType,flist[i+2].ethType);
+            System.out.println("MAC: "+flist[i].MAC);
         }
     }
 

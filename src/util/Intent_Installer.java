@@ -63,7 +63,6 @@ public class Intent_Installer {
     public void choice_path(ResourcePool_Manager.path_INFO_list[] path_list) throws Exception {
 
         boolean[] flag = {false,false,false,false,false};
-
         for (int i=0;i<path_list.length;i++){
             if (path_list[i].z_c_list.size()>0){
                 //System.out.println("^^ z_c I: "+i);

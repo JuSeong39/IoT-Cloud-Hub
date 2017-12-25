@@ -44,6 +44,7 @@ public class ONOS_API_Handler {
             list[i].life = Object.get("life").toString();
             list[i].packets = Object.get("packets").toString();
             list[i].bytes = Object.get("bytes").toString();
+            //list[i].MAC = Object.get("selector").toString();
 
             JSONObject Object2 = (JSONObject) Object.get("treatment");
             JSONArray InfoArray2 = (JSONArray) Object2.get("instructions");
@@ -57,8 +58,11 @@ public class ONOS_API_Handler {
             InfoArray2 = (JSONArray) Object2.get("criteria");
             for (int j=0;j<InfoArray2.size();j++){
                 JSONObject Object3 = (JSONObject) InfoArray2.get(j);
-                if (Object3.get("ethType")!=null)
+                if (Object3.get("ethType")!=null){
                     list[i].ethType = Object3.get("ethType").toString();
+                }
+                if(Object3.get("type").toString().equals("ETH_DST"))
+                    list[i].MAC = Object3.get("mac").toString();
                 list[i].ctype = Object3.get("type").toString();
             }
         }
@@ -255,7 +259,7 @@ public class ONOS_API_Handler {
                     for (int j=0; j<MAX;j++){
                         if (broker[j]!=null){
                             PATH_API_URL += producer[i]+"/" + broker[j];
-                            //System.out.println("PATH_API_URL: "+PATH_API_URL);
+                            //System.out.println("*** PATH_API_URL: "+PATH_API_URL);
                             String buffer = URL_REQUEST(resource.Controller_ID,resource.Controller_Pw,PATH_API_URL,onos);
                             org.json.simple.parser.JSONParser jsonParser = new org.json.simple.parser.JSONParser();
                             JSONObject jsonObject = (JSONObject) jsonParser.parse(buffer);
@@ -273,6 +277,7 @@ public class ONOS_API_Handler {
                                     //list[j].p_b_path[t] += "%"+Object2.get("dst");
                                     list[j].description = "Producer <-> Broker";
                                     list[i].service = service;
+                                    System.out.println("*** p_b_path: "+j+path);
                                     list[j].p_b_list.add(path);
                                 }
                             }

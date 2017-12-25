@@ -121,7 +121,7 @@ public class ResourcePool_Manager {
         return list;
     }
     public flow_Info_list[] flow_init(){
-        flow_Info_list[] list = new flow_Info_list[MAX];
+        flow_Info_list[] list = new flow_Info_list[1000];
         for (int i=0;i<list.length;i++)
         {
             list[i] = new flow_Info_list();
@@ -231,6 +231,7 @@ public class ResourcePool_Manager {
         public String port;
         public String ctype;
         public String ethType;
+        public String MAC;
     }
     public class template_INFO_list {
         public String version;
@@ -291,5 +292,13 @@ public class ResourcePool_Manager {
         public String[] arr = new String[MAX];
         public String srcTOdst;
     }
+
+    public class test {
+        public String src;
+        public String dst;
+        public String[] arr= new String[MAX];
+    }
+
+
 
 }

@@ -37,6 +37,7 @@ public class Hub {
         ResourcePool_Manager.P_B_Path[] P_B_Path = resource.P_B_Path_init();
 
         Intent_Installer2 installer = new Intent_Installer2();
+        //Intent_Installer installer = new Intent_Installer();
         ONOS_API_Handler onos_APIHandler = new ONOS_API_Handler();
         Template_Handler parsingTemplate = new Template_Handler();
         DB_Manager DB = new DB_Manager();
@@ -84,12 +85,14 @@ public class Hub {
             if(DB.compare_topology()) {
                 //Steering
                 System.out.println("No Topology Changed [log-K]: "+k);
+                //print.PRINT(slist,hlist,ilist,llist,flist);
                 k+=1;
                 sHandler.steering(resource,path_list);
             } else {
                 System.out.println("Topology Changed [log-K]: "+k);
                 k+=1;
                 pHandler.provisioning(resource);
+                //Revision Required
             }
             Thread.sleep(60000);
         }

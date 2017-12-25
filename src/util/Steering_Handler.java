@@ -16,6 +16,9 @@ public class Steering_Handler {
         ResourcePool_Manager.switch_Info_list[] slist = resource.getSwitch_INFO_list();
         ResourcePool_Manager.serviceHosts_INFO_list[] shlists = null;
 
+        Printer print = new Printer();
+
+
         int total_bytyes_b_c_per_min=0;
         int total_bytyes_p_b_per_min=0;
         int total_bytyes_b_c_per_min_temp=0;
@@ -32,6 +35,7 @@ public class Steering_Handler {
 
         ONOS_API_Handler onos_APIHandler = new ONOS_API_Handler();
         flist = onos_APIHandler.GET_ONOS_INFO_Flow(flist);
+        print.PRINT(slist,hlist,ilist,llist,flist);
 
         DB_Manager DB = new DB_Manager();
         //DB.DB_Flow_Push(flist);
@@ -91,6 +95,9 @@ public class Steering_Handler {
         System.out.println(" Bytes of Temporal Producer <-> Broker paths per minute :"+total_bytyes_p_b_per_min_temp);
         System.out.println(" Bytes of Temporal Broker <-> Consumer paths per minute :"+total_bytyes_b_c_per_min_temp);
 
+        System.out.println("1^^"+identifier_b_c);
+        System.out.println("1^^"+identifier_p_b);
+
         if (total_bytyes_b_c_per_min_temp<total_bytyes_b_c_per_min && total_bytyes_p_b_per_min_temp<total_bytyes_p_b_per_min){
 
             System.out.println("Steering Start !");
@@ -102,7 +109,8 @@ public class Steering_Handler {
 
             path_list[identifier_p_b].p_b_list.clear();
             path_list[identifier_b_c].b_c_list.clear();
-
+            System.out.println("^^"+identifier_b_c);
+            System.out.println("^^"+identifier_p_b);
             temp_p_b_list = Arrays.asList(path_list[identifier_p_b].temp_p_b_path);
             temp_p_b_list2 = Arrays.asList(path_list[identifier_p_b].p_b_path);
             temp_p_b_list3.addAll(temp_p_b_list);
@@ -168,6 +176,8 @@ public class Steering_Handler {
             //System.out.println("p_b_list: "+path_list[identifier_p_b].p_b_list);
             installer.choice_path(path_list);
         }
+        System.out.println("^2^"+identifier_b_c);
+        System.out.println("^2^"+identifier_p_b);
     }
     /*
     * calculate total_byte_temp method

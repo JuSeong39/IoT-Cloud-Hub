@@ -1,0 +1,18 @@
+{
+  "Service": [{
+    "Version": "0.1",
+    "Name": "smart_energy",
+    "Zookeeper": [],
+    "Broker": [{"IP": "10.0.0.5","Port": "9092"},{"IP": "10.0.0.6","Port": "9091"}],
+    "Consumer":[{"IP": "10.0.0.7"},{"IP": "10.0.0.8"}],
+    "Producer":[{"IP": "10.0.0.1"},{"IP": "10.0.0.2"},{"IP": "10.0.0.3"},{"IP": "10.0.0.4"}]
+},
+{
+    "Version": "0.1",
+    "Name": "resource_monitor",
+    "Zookeeper": [],
+    "Broker": [],
+    "Consumer":[],
+    "Producer":[]
+}
+]}
